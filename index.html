@@ -26,7 +26,7 @@
     header {
       background: #f5d9ec;
       text-align: center;
-      padding: 2rem;
+      padding: 3rem 1.5rem;
       font-family: 'Pacifico', cursive;
       font-size: 2.7rem;
       color: #8e44ad;
@@ -40,20 +40,12 @@
       max-width: 850px;
       margin: auto;
       transition: transform 0.4s ease-in-out;
-      opacity: 0;
-      transform: translateY(30px);
-      text-align: center; /* Center text in sections */
-      display: none; /* Start by hiding sections */
-    }
-    section.active {
-      opacity: 1;
-      transform: translateY(0);
-      display: block; /* Show active section */
     }
     h2 {
       font-family: 'Pacifico', cursive;
       font-size: 2.3rem;
       color: #a76ecb;
+      text-align: center;
     }
     .interactive {
       background: rgba(255, 255, 255, 0.8);
@@ -62,11 +54,6 @@
       padding: 2rem;
       margin-top: 2rem;
       position: relative;
-      animation: popUp 0.8s ease-out;
-    }
-    @keyframes popUp {
-      from { transform: scale(0.9); opacity: 0; }
-      to { transform: scale(1); opacity: 1; }
     }
     .nickname-bubble {
       display: inline-block;
@@ -116,52 +103,41 @@
       color: #6a1b9a;
       font-style: italic;
     }
-
-    /* New 'Next' Button Design */
-    .next-btn {
-      display: inline-block;
-      background: #8e44ad;
-      color: white;
-      padding: 12px 30px;
-      font-size: 1.2rem;
-      border-radius: 30px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      cursor: pointer;
-      text-decoration: none;
-      margin-top: 2rem;
-      position: relative;
-      z-index: 2;
-    }
-    .next-btn:hover {
-      transform: scale(1.05);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-    }
-    .next-btn:active {
-      transform: scale(0.98);
-    }
-    .next-btn:after {
-      content: "→";
-      font-size: 1.5rem;
-      margin-left: 10px;
-      transition: transform 0.3s ease;
-    }
-    .next-btn:hover:after {
-      transform: translateX(5px);
-    }
-
-    /* Centering button */
-    .button-container {
-      display: flex;
-      justify-content: center;
-      margin-top: 2rem;
-    }
-
-    @media (max-width: 600px) {
-      header { font-size: 2rem; padding: 1.5rem; }
+    @media (max-width: 800px) {
+      header { font-size: 2rem; padding: 2rem 1rem; }
       section { padding: 2rem 1rem; }
       .interactive { padding: 1.5rem; }
       .nickname-bubble { font-size: 0.95rem; }
+    }
+
+    @media (max-width: 600px) {
+      header { font-size: 1.8rem; padding: 1.5rem; }
+      section { padding: 1.5rem 1rem; }
+      h2 { font-size: 2rem; }
+      .nickname-bubble { font-size: 1rem; padding: 0.5rem 1rem; }
+      .interactive { padding: 1rem; }
+    }
+
+    .next-button {
+      background-color: #e8a7d1;
+      color: white;
+      border: none;
+      padding: 12px 30px;
+      border-radius: 30px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+      margin-top: 2rem;
+    }
+
+    .next-button:hover {
+      background-color: #d58ab3;
+      transform: scale(1.05);
+    }
+
+    .next-button:focus {
+      outline: none;
     }
   </style>
 </head>
@@ -174,13 +150,11 @@
     A Fairytale Called Us
   </header>
 
-  <section id="classroom" class="active">
+  <section id="classroom">
     <h2>Once Upon a Classroom</h2>
     <div class="interactive">
       <p>In the gentle chaos of 2nd grade, where crayons met notebooks, two tiny hearts—Om and Rutuja—found each other. They didn't know it then, but something soft and eternal was already blooming between giggles and pencil fights.</p>
-    </div>
-    <div class="button-container">
-      <button class="next-btn">Next</button>
+      <button class="next-button" onclick="nextSlide()">Next</button>
     </div>
   </section>
 
@@ -188,9 +162,7 @@
     <h2>Lost and Found</h2>
     <div class="interactive">
       <p>Years passed, and silence took over. But in different corners of the world, two souls whispered wishes under their breath, praying unknowingly for the same miracle—to find each other again. And after the 10th boards, destiny weaved them back together, thread by golden thread.</p>
-    </div>
-    <div class="button-container">
-      <button class="next-btn">Next</button>
+      <button class="next-button" onclick="nextSlide()">Next</button>
     </div>
   </section>
 
@@ -204,9 +176,7 @@
       <div class="nickname-bubble">Maiya</div>
       <div class="nickname-bubble">Mumma</div>
       <div class="nickname-bubble">Diyu</div>
-    </div>
-    <div class="button-container">
-      <button class="next-btn">Next</button>
+      <button class="next-button" onclick="nextSlide()">Next</button>
     </div>
   </section>
 
@@ -214,9 +184,7 @@
     <h2>From Crushes to Confessions</h2>
     <div class="interactive">
       <p>She loved him silently, calling him names only her heart could hear. He had another name on his lips but her care never left his heart. And slowly, like stars realizing they were born to shine together, the truth unfolded: they were meant for more.</p>
-    </div>
-    <div class="button-container">
-      <button class="next-btn">Next</button>
+      <button class="next-button" onclick="nextSlide()">Next</button>
     </div>
   </section>
 
@@ -227,61 +195,36 @@
       <p>He looked at her like a princess with a sword.</p>
       <p>She cared like a mother, smiled like a lover.</p>
       <p>He held her in silence when words weren’t enough.</p>
-    </div>
-    <div class="button-container">
-      <button class="next-btn">Next</button>
+      <button class="next-button" onclick="nextSlide()">Next</button>
     </div>
   </section>
 
   <section id="kiss">
     <h2>The First Kiss</h2>
     <div class="interactive">
-      <p>Under the invisible stars of an ordinary day, their hearts kissed for the first time—not with lips, but with the surrender of knowing. That moment—their first emotional kiss—was a promise written in magic and moonlight.</p>
-    </div>
-    <div class="button-container">
-      <button class="next-btn">Next</button>
-    </div>
-  </section>
-
-  <section id="forever">
-    <h2>Together Forever</h2>
-    <div class="interactive">
-      <p>"I’ll always be your Oru."</p>
-      <p>"And I’ll always be your Chiuu, your Mumma, your Diyu."</p>
-      <p>Together, they dream of quiet mornings, hand-in-hand sunsets, wedding rings, and little feet running around—forever wrapped in each other’s arms.</p>
-    </div>
-    <div class="button-container">
-      <button class="next-btn">Next</button>
+      <p>Under the invisible stars of an ordinary day, their hearts met for the first time in perfect harmony. Their first kiss wasn't just a moment—it was the universe in one beautiful, fleeting touch.</p>
+      <button class="next-button">Done</button>
     </div>
   </section>
 
   <footer>
-    This fairytale is real. It's ours. 💖
+    Created with love by Om for Rutuja 💖
   </footer>
 
   <script>
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('sw.js')
-        .then(reg => console.log('Service Worker Registered:', reg))
-        .catch(err => console.log('Service Worker Error:', err));
+    let slideIndex = 0;
+
+    const slides = document.querySelectorAll('section');
+
+    function nextSlide() {
+      slides[slideIndex].style.display = 'none';
+      slideIndex = (slideIndex + 1) % slides.length;
+      slides[slideIndex].style.display = 'block';
     }
 
-    // Handle transitions and 'Next' button
-    let currentSectionIndex = 0;
-    const sections = document.querySelectorAll('section');
-    const nextBtns = document.querySelectorAll('.next-btn');
-
-    // Show the first section
-    sections[currentSectionIndex].classList.add('active');
-
-    nextBtns.forEach((btn, index) => {
-      btn.addEventListener('click', () => {
-        if (currentSectionIndex < sections.length - 1) {
-          sections[currentSectionIndex].classList.remove('active');
-          currentSectionIndex++;
-          sections[currentSectionIndex].classList.add('active');
-        }
-      });
+    // Initialize by showing the first slide
+    slides.forEach((slide, index) => {
+      if (index !== 0) slide.style.display = 'none';
     });
   </script>
 </body>
