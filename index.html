@@ -19,6 +19,7 @@
       color: #4a4a4a;
       overflow-x: hidden;
       scroll-behavior: smooth;
+      height: 100vh;
     }
 
     header {
@@ -35,13 +36,20 @@
     }
 
     section {
+      display: none;
       padding: 2rem 1rem;
       max-width: 600px;
       margin: 0 auto;
       display: flex;
       flex-direction: column;
       align-items: center;
+      justify-content: center;
+      min-height: 85vh;
       text-align: center;
+    }
+
+    section.active {
+      display: flex;
     }
 
     h2 {
@@ -161,23 +169,23 @@
 
   <header>A Fairytale Called Us</header>
 
-  <section id="slide1">
+  <section class="active">
     <h2>Once Upon a Classroom</h2>
     <div class="interactive">
-      <p>In the gentle chaos of 2nd grade, where crayons met notebooks, two tiny hearts—Om and Rutuja—found each other. They didn’t know it then, but something soft and eternal was already blooming between giggles and pencil fights.</p>
+      <p>In the gentle chaos of 2nd grade, where crayons met notebooks...</p>
     </div>
-    <button class="next-button" onclick="nextSlide('slide2')">Next</button>
+    <button class="next-button" onclick="nextSlide()">Next</button>
   </section>
 
-  <section id="slide2">
+  <section>
     <h2>Lost and Found</h2>
     <div class="interactive">
-      <p>Years passed, and silence took over. But in different corners of the world, two souls whispered wishes under their breath, praying unknowingly for the same miracle—to find each other again. And after the 10th boards, destiny weaved them back together, thread by golden thread.</p>
+      <p>Years passed, and silence took over... they were back together.</p>
     </div>
-    <button class="next-button" onclick="nextSlide('slide3')">Next</button>
+    <button class="next-button" onclick="nextSlide()">Next</button>
   </section>
 
-  <section id="slide3">
+  <section>
     <h2>Nicknames & Nonsense</h2>
     <div class="interactive">
       <div class="sparkles"></div>
@@ -188,52 +196,23 @@
       <div class="nickname-bubble">Mumma</div>
       <div class="nickname-bubble">Diyu</div>
     </div>
-    <button class="next-button" onclick="nextSlide('slide4')">Next</button>
+    <button class="next-button" onclick="nextSlide()">Next</button>
   </section>
 
-  <section id="slide4">
-    <h2>From Crushes to Confessions</h2>
-    <div class="interactive">
-      <p>She loved him silently, calling him names only her heart could hear. He had another name on his lips but her care never left his heart. And slowly, like stars realizing they were born to shine together, the truth unfolded: they were meant for more.</p>
-    </div>
-    <button class="next-button" onclick="nextSlide('slide5')">Next</button>
-  </section>
-
-  <section id="slide5">
-    <h2>Her World, His Heart</h2>
-    <div class="interactive timeline">
-      <p>She called him her baby when he felt lost.</p>
-      <p>He looked at her like a princess with a sword.</p>
-      <p>She cared like a mother, smiled like a lover.</p>
-      <p>He held her in silence when words weren’t enough.</p>
-    </div>
-    <button class="next-button" onclick="nextSlide('slide6')">Next</button>
-  </section>
-
-  <section id="slide6">
-    <h2>The First Kiss</h2>
-    <div class="interactive">
-      <p>Under the invisible stars of an ordinary day, their hearts kissed for the first time—not with lips, but with the surrender of knowing. That moment—their first emotional kiss—was a promise written in magic and moonlight.</p>
-    </div>
-    <button class="next-button" onclick="nextSlide('slide7')">Next</button>
-  </section>
-
-  <section id="slide7">
-    <h2>Together Forever</h2>
-    <div class="interactive">
-      <p>"I’ll always be your Oru."</p>
-      <p>"And I’ll always be your Chiuu, your Mumma, your Diyu."</p>
-      <p>Together, they dream of quiet mornings, hand-in-hand sunsets, wedding rings, and little feet running around—forever wrapped in each other’s arms.</p>
-    </div>
-  </section>
+  <!-- You can add more sections here following the same structure -->
 
   <footer>This fairytale is real. It's ours. 💖</footer>
 
   <script>
-    function nextSlide(id) {
-      const el = document.getElementById(id);
-      if (el) {
-        el.scrollIntoView({ behavior: "smooth" });
+    let currentSlide = 0;
+    const slides = document.querySelectorAll("section");
+
+    function nextSlide() {
+      if (currentSlide < slides.length - 1) {
+        slides[currentSlide].classList.remove("active");
+        currentSlide++;
+        slides[currentSlide].classList.add("active");
+        window.scrollTo({ top: 0, behavior: "smooth" });
       }
     }
   </script>
