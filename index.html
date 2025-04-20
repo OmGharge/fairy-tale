@@ -1,233 +1,241 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#f5d9ec">
-  <link rel="manifest" href="manifest.json">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#f5d9ec" />
   <title>Our Fairytale</title>
-  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand&display=swap" rel="stylesheet" />
   <style>
     * {
-      margin: 0;
-      padding: 0;
       box-sizing: border-box;
     }
-    body {
+
+    html, body {
+      margin: 0;
+      padding: 0;
       font-family: 'Quicksand', sans-serif;
       background: linear-gradient(to bottom, #e9defa, #fbfcfd);
       color: #4a4a4a;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
       overflow-x: hidden;
-      text-align: center;
+      scroll-behavior: smooth;
     }
 
     header {
       background: #f5d9ec;
       text-align: center;
-      padding: 2rem;
+      padding: 1.5rem 1rem;
       font-family: 'Pacifico', cursive;
-      font-size: 2.5rem;
+      font-size: 2.2rem;
       color: #8e44ad;
-      width: 100%;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
       position: sticky;
       top: 0;
-      z-index: 10;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      z-index: 100;
     }
 
     section {
-      width: 100%;
-      max-width: 850px;
-      padding: 2rem;
-      margin: auto;
+      padding: 2rem 1rem;
+      max-width: 600px;
+      margin: 0 auto;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
       text-align: center;
-      transition: transform 0.4s ease-in-out;
-      opacity: 0;
-      visibility: hidden;
-    }
-
-    section.active {
-      opacity: 1;
-      visibility: visible;
     }
 
     h2 {
       font-family: 'Pacifico', cursive;
-      font-size: 2rem;
+      font-size: 1.8rem;
       color: #a76ecb;
-      margin-bottom: 1.5rem;
+      margin-bottom: 1rem;
     }
 
     .interactive {
       background: rgba(255, 255, 255, 0.8);
-      border-radius: 25px;
-      padding: 2rem;
-      width: 100%;
-      max-width: 500px;
+      border-radius: 20px;
       box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+      padding: 1.5rem;
+      width: 100%;
+      max-width: 90vw;
       position: relative;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+    }
+
+    p {
+      font-size: 1.05rem;
+      line-height: 1.6;
     }
 
     .nickname-bubble {
       display: inline-block;
       background: #fcd6f5;
       border-radius: 30px;
-      padding: 0.6rem 1.2rem;
-      margin: 0.5rem;
-      font-size: 1.1rem;
+      padding: 0.5rem 1rem;
+      margin: 0.4rem;
+      font-size: 0.95rem;
+      animation: float 4s ease-in-out infinite;
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
 
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .sparkles {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: url('https://i.imgur.com/mHfHg9e.gif');
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0.3;
+    }
+
+    .timeline {
+      border-left: 3px dotted #caa9e0;
+      padding-left: 1rem;
+      text-align: left;
+    }
+
     .timeline p {
-      margin: 1.2rem 0;
+      margin: 1rem 0;
       position: relative;
+      padding-left: 1rem;
     }
 
     .timeline p::before {
       content: '💖';
       position: absolute;
-      left: -1.8rem;
+      left: -1.2rem;
       top: 0.1rem;
+    }
+
+    .next-button {
+      margin-top: 2rem;
+      background-color: #d1b3ff;
+      color: white;
+      padding: 0.8rem 1.8rem;
+      border: none;
+      border-radius: 30px;
+      font-size: 1rem;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      font-family: 'Pacifico', cursive;
+      transition: transform 0.3s ease, background 0.3s;
+    }
+
+    .next-button:hover {
+      background-color: #b689f0;
+      transform: scale(1.05);
     }
 
     footer {
       text-align: center;
-      padding: 2rem;
-      font-size: 1rem;
+      padding: 2rem 1rem;
+      font-size: 0.9rem;
       background: #f3e5f5;
       color: #6a1b9a;
       font-style: italic;
     }
 
-    .next-button {
-      background-color: #e8a7d1;
-      color: white;
-      border: none;
-      padding: 12px 30px;
-      border-radius: 30px;
-      font-size: 1.1rem;
-      cursor: pointer;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      transition: all 0.3s ease;
-      margin-top: 2rem;
-    }
-
-    .next-button:hover {
-      background-color: #d58ab3;
-      transform: scale(1.05);
-    }
-
-    .next-button:focus {
-      outline: none;
-    }
-
-    @media (max-width: 800px) {
-      header { font-size: 2rem; padding: 2rem 1rem; }
-      section { padding: 2rem 1rem; }
-      .interactive { padding: 1.5rem; }
-      .nickname-bubble { font-size: 1rem; }
-    }
-
-    @media (max-width: 600px) {
-      header { font-size: 1.8rem; padding: 1.5rem 1rem; }
-      section { padding: 1.5rem 1rem; }
-      h2 { font-size: 1.8rem; }
-      .nickname-bubble { font-size: 1rem; padding: 0.5rem 1rem; }
-      .interactive { padding: 1rem; }
+    @media (max-width: 450px) {
+      header {
+        font-size: 1.8rem;
+      }
+      h2 {
+        font-size: 1.5rem;
+      }
+      .next-button {
+        font-size: 0.95rem;
+        padding: 0.6rem 1.5rem;
+      }
     }
   </style>
 </head>
 <body>
+
   <audio autoplay loop>
     <source src="https://cdn.pixabay.com/audio/2023/03/16/audio_a7c29a1f92.mp3" type="audio/mpeg">
   </audio>
 
-  <header>
-    A Fairytale Called Us
-  </header>
+  <header>A Fairytale Called Us</header>
 
-  <section id="classroom" class="active">
+  <section id="slide1">
     <h2>Once Upon a Classroom</h2>
     <div class="interactive">
-      <p>In the gentle chaos of 2nd grade, where crayons met notebooks, two tiny hearts—Om and Rutuja—found each other. They didn't know it then, but something soft and eternal was already blooming between giggles and pencil fights.</p>
-      <button class="next-button" onclick="nextSlide()">Next</button>
+      <p>In the gentle chaos of 2nd grade, where crayons met notebooks, two tiny hearts—Om and Rutuja—found each other. They didn’t know it then, but something soft and eternal was already blooming between giggles and pencil fights.</p>
     </div>
+    <button class="next-button" onclick="nextSlide('slide2')">Next</button>
   </section>
 
-  <section id="lost-found">
+  <section id="slide2">
     <h2>Lost and Found</h2>
     <div class="interactive">
       <p>Years passed, and silence took over. But in different corners of the world, two souls whispered wishes under their breath, praying unknowingly for the same miracle—to find each other again. And after the 10th boards, destiny weaved them back together, thread by golden thread.</p>
-      <button class="next-button" onclick="nextSlide()">Next</button>
     </div>
+    <button class="next-button" onclick="nextSlide('slide3')">Next</button>
   </section>
 
-  <section id="nicknames">
+  <section id="slide3">
     <h2>Nicknames & Nonsense</h2>
     <div class="interactive">
+      <div class="sparkles"></div>
       <div class="nickname-bubble">Pillu</div>
       <div class="nickname-bubble">Bala</div>
       <div class="nickname-bubble">Oru</div>
       <div class="nickname-bubble">Maiya</div>
       <div class="nickname-bubble">Mumma</div>
       <div class="nickname-bubble">Diyu</div>
-      <button class="next-button" onclick="nextSlide()">Next</button>
     </div>
+    <button class="next-button" onclick="nextSlide('slide4')">Next</button>
   </section>
 
-  <section id="crushes">
+  <section id="slide4">
     <h2>From Crushes to Confessions</h2>
     <div class="interactive">
       <p>She loved him silently, calling him names only her heart could hear. He had another name on his lips but her care never left his heart. And slowly, like stars realizing they were born to shine together, the truth unfolded: they were meant for more.</p>
-      <button class="next-button" onclick="nextSlide()">Next</button>
     </div>
+    <button class="next-button" onclick="nextSlide('slide5')">Next</button>
   </section>
 
-  <section id="heart">
+  <section id="slide5">
     <h2>Her World, His Heart</h2>
     <div class="interactive timeline">
       <p>She called him her baby when he felt lost.</p>
       <p>He looked at her like a princess with a sword.</p>
       <p>She cared like a mother, smiled like a lover.</p>
       <p>He held her in silence when words weren’t enough.</p>
-      <button class="next-button" onclick="nextSlide()">Next</button>
     </div>
+    <button class="next-button" onclick="nextSlide('slide6')">Next</button>
   </section>
 
-  <section id="kiss">
+  <section id="slide6">
     <h2>The First Kiss</h2>
     <div class="interactive">
-      <p>Under the invisible stars of an ordinary day, their hearts met for the first time in perfect harmony. Their first kiss wasn't just a moment—it was the universe in one beautiful, fleeting touch.</p>
-      <button class="next-button">Done</button>
+      <p>Under the invisible stars of an ordinary day, their hearts kissed for the first time—not with lips, but with the surrender of knowing. That moment—their first emotional kiss—was a promise written in magic and moonlight.</p>
+    </div>
+    <button class="next-button" onclick="nextSlide('slide7')">Next</button>
+  </section>
+
+  <section id="slide7">
+    <h2>Together Forever</h2>
+    <div class="interactive">
+      <p>"I’ll always be your Oru."</p>
+      <p>"And I’ll always be your Chiuu, your Mumma, your Diyu."</p>
+      <p>Together, they dream of quiet mornings, hand-in-hand sunsets, wedding rings, and little feet running around—forever wrapped in each other’s arms.</p>
     </div>
   </section>
 
-  <footer>
-    Created with love by Om for Rutuja 💖
-  </footer>
+  <footer>This fairytale is real. It's ours. 💖</footer>
 
   <script>
-    let slideIndex = 0;
-    const slides = document.querySelectorAll('section');
-
-    function nextSlide() {
-      slides[slideIndex].classList.remove('active');
-      slideIndex = (slideIndex + 1) % slides.length;
-      slides[slideIndex].classList.add('active');
+    function nextSlide(id) {
+      const el = document.getElementById(id);
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth" });
+      }
     }
   </script>
 </body>
 </html>
-
