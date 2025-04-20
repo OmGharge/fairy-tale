@@ -19,11 +19,13 @@
       color: #4a4a4a;
       display: flex;
       flex-direction: column;
-      align-items: center;
       justify-content: center;
+      align-items: center;
       min-height: 100vh;
       overflow-x: hidden;
+      text-align: center;
     }
+
     header {
       background: #f5d9ec;
       text-align: center;
@@ -37,6 +39,7 @@
       z-index: 10;
       box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     }
+
     section {
       width: 100%;
       max-width: 850px;
@@ -48,13 +51,22 @@
       justify-content: center;
       text-align: center;
       transition: transform 0.4s ease-in-out;
+      opacity: 0;
+      visibility: hidden;
     }
+
+    section.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
     h2 {
       font-family: 'Pacifico', cursive;
       font-size: 2rem;
       color: #a76ecb;
       margin-bottom: 1.5rem;
     }
+
     .interactive {
       background: rgba(255, 255, 255, 0.8);
       border-radius: 25px;
@@ -67,6 +79,7 @@
       flex-direction: column;
       align-items: center;
     }
+
     .nickname-bubble {
       display: inline-block;
       background: #fcd6f5;
@@ -76,16 +89,19 @@
       font-size: 1.1rem;
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
+
     .timeline p {
       margin: 1.2rem 0;
       position: relative;
     }
+
     .timeline p::before {
       content: '💖';
       position: absolute;
       left: -1.8rem;
       top: 0.1rem;
     }
+
     footer {
       text-align: center;
       padding: 2rem;
@@ -94,6 +110,7 @@
       color: #6a1b9a;
       font-style: italic;
     }
+
     .next-button {
       background-color: #e8a7d1;
       color: white;
@@ -106,10 +123,12 @@
       transition: all 0.3s ease;
       margin-top: 2rem;
     }
+
     .next-button:hover {
       background-color: #d58ab3;
       transform: scale(1.05);
     }
+
     .next-button:focus {
       outline: none;
     }
@@ -139,7 +158,7 @@
     A Fairytale Called Us
   </header>
 
-  <section id="classroom">
+  <section id="classroom" class="active">
     <h2>Once Upon a Classroom</h2>
     <div class="interactive">
       <p>In the gentle chaos of 2nd grade, where crayons met notebooks, two tiny hearts—Om and Rutuja—found each other. They didn't know it then, but something soft and eternal was already blooming between giggles and pencil fights.</p>
@@ -201,19 +220,14 @@
 
   <script>
     let slideIndex = 0;
-
     const slides = document.querySelectorAll('section');
 
     function nextSlide() {
-      slides[slideIndex].style.display = 'none';
+      slides[slideIndex].classList.remove('active');
       slideIndex = (slideIndex + 1) % slides.length;
-      slides[slideIndex].style.display = 'block';
+      slides[slideIndex].classList.add('active');
     }
-
-    // Initialize by showing the first slide
-    slides.forEach((slide, index) => {
-      if (index !== 0) slide.style.display = 'none';
-    });
   </script>
 </body>
 </html>
+
