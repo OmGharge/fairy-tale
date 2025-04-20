@@ -1,0 +1,22 @@
+{
+    "name": "Our Fairytale",
+    "short_name": "Fairytale",
+    "start_url": "./index.html",
+    "display": "standalone",
+    "background_color": "#f5d9ec",
+    "theme_color": "#f5d9ec",
+    "orientation": "portrait",
+    "icons": [
+      {
+        "src": "https://i.imgur.com/5NLhIUh.png",
+        "sizes": "192x192",
+        "type": "image/png"
+      },
+      {
+        "src": "https://i.imgur.com/5NLhIUh.png",
+        "sizes": "512x512",
+        "type": "image/png"
+      }
+    ]
+  }
+  
